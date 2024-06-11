@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+ <body>
+ <div class="main text-white p-10 w-full min-h-fullscreen bg-zinc-900">
+  <a class="text-blue-500 bg-zinc-900 mb-10" href="/">go back to home</a>
+  <form action="/edit" method="post">
+    <input type="text"  class=" block w-full rounded-md outline-none mt-4 text-zinc-600 mb-2 px-1 py-2 bg-zinc-800" placeholder="<%=filename%>" value="<%=filename%>" name="prev" >
+    <input type="text"  class="block w-full rounded-md outline-none  px-1 py-2 bg-zinc-800" placeholder="New Name" name="m" >
+    <!-- <textarea name="details" class="block w-full h-44 outline-none  px-6 py-4 mt-3 bg-zinc-800 resize-none" placeholder="Write Your Idea details"></textarea> -->
+    <input class=" bg-yellow-600 rounded-md px-1 py-2 mt-3 cursor-pointer" type="submit" value="Update Name">
+  </form>
+   </div>
+</body> 
+</html>

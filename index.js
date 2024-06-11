@@ -20,10 +20,11 @@ app.set("viewengine", "ejs");
 //setting static folders ./ images,javascript, stylesheets
 const path = require("path");
 app.use(express.static(path.join(__dirname, "public")));
-app.use(function (req, res, next) {
-  console.log("middleware");
-  next();
-});
+
+// app.use(function (req, res, next) {
+//   console.log("middleware");
+//   next();
+// });
 //rendering using making views folder
 app.get("/", function (req, res) {
   fs.readdir(`./files`, function (err, files) {
@@ -32,11 +33,22 @@ app.get("/", function (req, res) {
   });
 });
 
+app.get("/edit/:filename", function (req, res) {
+  res.render("edit.ejs", { filename: req.params.filename });
+});
+
 app.get("/files/:filename", function (req, res) {
   fs.readFile(`./files/${req.params.filename}`, "utf-8", function (err, data) {
     // console.log(data);
     res.render("show.ejs", { filename: req.params.filename, filedata: data });
   });
+});
+
+app.post("/edit", function (req, res) {
+  fs.rename(`./files/${req.body.prev}`, `./files/${req.body.m}`, function (err) {
+    res.redirect("/");
+  });
+  // console.log(req.body);
 });
 
 app.post("/create", function (req, res) {
