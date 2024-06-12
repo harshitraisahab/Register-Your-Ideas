@@ -48,12 +48,30 @@ app.post("/edit", function (req, res) {
   fs.rename(`./files/${req.body.prev}`, `./files/${req.body.m}`, function (err) {
     res.redirect("/");
   });
+
   // console.log(req.body);
+});
+
+app.get("/delete/:ps", function (req, res) {
+  // console.log('$');
+  fs.unlink(`./files/${req.params.ps}`, (err) => {
+    if (err) throw err;
+    res.redirect("/");
+    // console.log("path/file.txt was deleted");
+  });
 });
 
 app.post("/create", function (req, res) {
   // console.log(req.body);
-  fs.writeFile(`./files/${req.body.title.split(" ").join("")}.txt`, req.body.details, function (err) {
+  // fs.writeFile(`./files/${req.body.title.split(" ").join("")}.txt`, req.body.details, function (err) {
+  //   res.redirect("/");
+  // });
+
+  const fileName = req.body.title.split(" ").join("");
+  const filePath = `./files/${fileName}`;
+
+  fs.writeFile(filePath, req.body.details, function (err) {
+    if (err) throw err;
     res.redirect("/");
   });
 });

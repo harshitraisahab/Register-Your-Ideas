@@ -14,7 +14,7 @@
     <p class=" decoration-zinc-700 font-serif-extrabold mb-4 text-center text-xl ">Save Today Grow Tomorrow</p>
 
     <form action="/create" method="post">
-      <input name="title" type="text" class="block w-full rounded-md outline-none  px-6 py-4 bg-zinc-800" placeholder="Idea Tittle">
+      <input name="title" type="text" class="block w-full rounded-md outline-none  px-6 py-4 bg-zinc-800" placeholder="Idea Tittle" required>
       <textarea name="details" class="block w-full h-44 outline-none  px-6 py-4 mt-3 bg-zinc-800 resize-none" placeholder="Write Your Idea details"></textarea>
       <input class="items-center bg-blue-600 rounded-md px-5 py-3 mt-3 cursor-pointer" type="submit" value="Create Task">
     </form>
@@ -26,10 +26,16 @@
   <div class="task min-w-72 px-3 py-4 bg-zinc-800 rounded-md">
     <h1 class="text-white text-3xl bg-zinc-800 tracking-tighter"><%= val %></h1>
     <div class="flex w-full bg-zinc-800 justify-between ">
-      <a href="/files/<%= val%>" class="rounded-md px-1 py-1 text-blue-500 inline-block mt-3">read more..</a>
-      <a href="/edit/<%= val %>" class="rounded-md px-1 py-1 text-blue-500 inline-block mt-3">edit filename</a>
-
-    </div>
+      <a href="/files/<%= val%>" class="bg-zinc-800 rounded-md px-1 py-1 text-blue-500 inline-block mt-3">read more..</a>
+      <a href="/edit/<%= val %>" class="rounded-md bg-zinc-800 px-1 py-1 text-blue-500 inline-block mt-3">edit filename</a>
+      
+      </div>
+      <form name="delete" class="bg-zinc-800" action="/delete" method="post">
+        <a href="/delete/<%= val %>" class="rounded-md bg-zinc-800 px-1 py-1 text-red-500 inline-block mt-3">Delete</a>
+      
+        <!-- <input class="block w-20 bg-red-600 rounded-md px-1 py-2 mt-2 cursor-pointer" type="submit" value="delete"> -->
+      </form>
+      <!-- <buttonvalue="delete">Delete</buttonvalue=> -->
   </div>
 <% }) %>
  <% } else { %>
